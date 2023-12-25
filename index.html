@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIDI Parser Example</title>
+</head>
+<body>
+
+  <script src="https://raw.githubusercontent.com/colxi/midi-parser-js/master/src/main.js"></script>
+
+  <script>
+    // Загружаем содержимое MIDI-файла
+    const midiFileURL = 'https://vk.com/doc164853126_669716175';
+    
+    fetch(midiFileURL)
+      .then(response => response.arrayBuffer())
+      .then(midiData => {
+        // Парсим MIDI-файл
+        const midiParser = new MidiParser(midiData);
+        
+        // Получаем события из MIDI-файла
+        const events = midiParser.parse();
+        
+        // Выводим информацию о событиях
+        console.log(events);
+      })
+      .catch(error => console.error('Error loading MIDI file:', error));
+  </script>
+
+</body>
+</html>
